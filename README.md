@@ -1,2 +1,2 @@
-# PuppOstinato
-Puppet implementation of Ostinato traffic generation tool
+# Vault404
+Puppet implementation of vault by hashicorp
