@@ -3,28 +3,29 @@
 # @summary A short summary of the purpose of this class
 #
 # @example
-#   include vault::install
+include vault::install
 include '::archive'
 
-$base_url = 'https://releases.hashicorp.com/vault/'
-$version = '0.11.4'
-$OS = 'linux'
-$processor = 'amd64'
-$download_url = "${base_url}vault/${version}/vault_${version}_${OS}_${processor}.zip"
-$install_dir = '/opt/'
 
 
 class vault::install {
-	archive { "/tmp/vault_${version}_${OS}_${processor}.zip"
+	$base_url = 'https://releases.hashicorp.com/vault'
+	$version = '0.11.4'
+	$os_tmp = 'linux'
+	$processor = 'amd64'
+	$download_url = "${base_url}/vault/${version}/vault_${version}_${os_tmp}_${processor}.zip"
+	$install_dir = 'opt'
+	
+	archive { "/tmp/vault.zip":
 		ensure 		=> present,
+		extract 	=> true,
+		extract_path	=> "/${install_dir}/",
 		source 		=> $download_url,
 #		checksum_type	=> sha256
 #		checksum_url	=>
 #		sjekke file integritet
 #		sjekke signatur?
-		extract 	=> true,
-		extract_path	=> $install_dir,
-		cleanup 	=> true,
+		creates		=> "${install_dir}/vault",
 	}
 }
 
