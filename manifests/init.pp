@@ -6,11 +6,12 @@
 #   include vault
  class vault (
 
-	String $base_url,
-	String $version,
-	String $os_tmp,
-	String $processor, 
-	String $download_url,
+	$base_url 					= $vault::params::base_url,
+	$version				        = $vault::params::version,
+	$os_tmp						= $vault::params::os_tmp,
+	$processor					= $vault::params::processor,
+	$download_url					= $vault::params::download_url,
+	
 
  ) { 
 
