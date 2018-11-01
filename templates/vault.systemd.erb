@@ -1,0 +1,15 @@
+[Unit]
+Description=Vault for managing secrets 
+After=basic.target network.target
+
+[Service]
+User=root
+Group=root
+WorkingDirectory=/vagrant/nginx-reverse-proxy/legacy
+ExecStart=/opt/vault server -config=/opt/vault.hcl
+KillMode=process
+Restart=on-failure
+RestartSec=42s
+
+[Install]
+WantedBy=multi-user.target

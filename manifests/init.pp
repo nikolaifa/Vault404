@@ -14,10 +14,12 @@
 
  ) { 
 
-  contain vault::install 
-  contain vault::config
-  Class['::vault::install']
-  -> Class['::gossinbackup::config']
+	contain ::vault::install
+	contain ::vault::config
+	contain ::vault::service
+
+	Class['vault::install']-> Class['vault::config']
+	Class['vault::config'] ~> Class['vault::service']
 
  
    }

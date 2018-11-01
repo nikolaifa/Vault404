@@ -7,8 +7,9 @@ include vault::service
 
 class vault::service {
 	service { 'vault': 
+		name		=> vault,
 		ensure		=> running,
 		enable		=> true,
-		name		=> vault,
+		provider	=> systemd,
 	}
 }
