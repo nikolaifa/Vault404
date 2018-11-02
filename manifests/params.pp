@@ -12,8 +12,4 @@ class vault::params {
 	$processor			='amd64'
 	$download_url			='${base_url}/${version}/vault_${version}_${os_tmp}_${processor}.zip'
 
-
-
-
-
 }

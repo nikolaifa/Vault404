@@ -3,7 +3,7 @@
 # @summary A short summary of the purpose of this class
 #
 # @example
-include vault::service
+#include vault::service
 
 class vault::service {
 	service { 'vault': 

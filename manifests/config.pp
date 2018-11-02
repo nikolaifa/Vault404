@@ -3,8 +3,7 @@
 # @summary A short summary of the purpose of this class
 #
 # @example
-include vault::config
-include systemd::systemctl::daemon_reload
+#include vault::config
 
 class vault::config {
 #	$backend 	= { 'file' => { 'path' => '/opt/vault' }}
@@ -12,12 +11,14 @@ class vault::config {
 #				 'tls_disable' => 1,
 #			},
 #	}
+	
+	include systemd::systemctl::daemon_reload
 	file { '/etc/systemd/system/vault.service':
 	  ensure 	=> present,
 	  owner  	=> 'root',
 	  group  	=> 'root',
 	  mode   	=> '0644',
-	  content	=> template('../templates/vault.systemd.erb'),
+	  content	=> template('vault/vault.systemd.erb'),
 	}
 	~> Class['systemd::systemctl::daemon_reload']
 

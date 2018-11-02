@@ -3,7 +3,7 @@
 # @summary A short summary of the purpose of this class
 #
 # @example
-include vault::install
+#include vault::install
 include '::archive'
 
 class vault::install {

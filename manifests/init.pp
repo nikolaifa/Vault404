@@ -3,8 +3,7 @@
 # @summary A short summary of the purpose of this class
 #
 # @example
-#   include vault
- class vault (
+class vault (
 
 	$base_url 					= $vault::params::base_url,
 	$version				        = $vault::params::version,
@@ -13,14 +12,15 @@
 	$download_url					= $vault::params::download_url,
 	
 
- ) { 
+ ) inherits vault::params { 
 
-	contain ::vault::install
-	contain ::vault::config
-	contain ::vault::service
+	contain vault::install
+	contain vault::config
+#	contain vault::service
 
-	Class['vault::install']-> Class['vault::config']
-	Class['vault::config'] ~> Class['vault::service']
+	Class['vault::install']
+	-> Class['vault::config']
+#	~> Class['::vault::service']
 
  
    }
