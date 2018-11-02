@@ -3,7 +3,7 @@
 # @summary A short summary of the purpose of this class
 #
 # @example
-#   include vault::config
+include vault::config
 include systemd::systemctl::daemon_reload
 
 class vault::config {
@@ -17,7 +17,7 @@ class vault::config {
 	  owner  	=> 'root',
 	  group  	=> 'root',
 	  mode   	=> '0644',
-	  content	=> template('Vault404/vault.systemd.erb'),
+	  content	=> template('../templates/vault.systemd.erb'),
 	}
 	~> Class['systemd::systemctl::daemon_reload']
 
