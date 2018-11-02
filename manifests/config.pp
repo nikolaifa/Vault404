@@ -30,7 +30,7 @@ class vault::config {
 	}
 	require stdlib
 	file { '/opt/vaultConf.json':
-		ensure	=> present,
+		ensure	=> file,
 		content	=> to_json($vault_config),
 		owner	=> 'root',
 		group	=> 'root',

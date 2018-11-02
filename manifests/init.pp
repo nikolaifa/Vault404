@@ -3,27 +3,26 @@
 # @summary A short summary of the purpose of this class
 #
 # @example
-class vault (
+ #include vault
+ class vault (
 
 	$base_url 					= $vault::params::base_url,
 	$version				        = $vault::params::version,
 	$os_tmp						= $vault::params::os_tmp,
 	$processor					= $vault::params::processor,
 	$download_url					= $vault::params::download_url,
-	$server_url 					= $vault::params::server_url,
-	$destination_dir				= $vault::params::destination_url,
-	$binary_dir					= $vault::params::binary_dir,
-	$config_dir					= $vault::params::config_dir	
+	$install_dir					= $vault::params::install_dir,
+	$destination_dir				= $vault::params::destination_dir,
+	$binary_dir					= $vault::params::binary_dir
 
- ) inherits vault::params { 
+ ) inherits ::vault::params { 
 
-	contain vault::install
-	contain vault::config
-#	contain vault::service
-
-	Class['vault::install']
-	-> Class['vault::config']
-#	~> Class['::vault::service']
+	contain ::vault::install
+	contain ::vault::config
+	contain ::vault::service
+	#contain ::vault::service
+	Class['vault::install'] -> Class['vault::config']
+	Class['vault::config'] -> Class['vault::service']
 
  
    }
