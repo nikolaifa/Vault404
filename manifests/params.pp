@@ -6,32 +6,27 @@
 #   include vault::params
 class vault::params {
 
-	$base_url		='https://releases.hashicorp.com/vault'
-	$version		='0.11.4'
-	$destination_dir	='/opt/vault/'
-	$binary_dir		='/opt/bin'
-
+	$base_url = 'https://releases.hashicorp.com/vault'
+	$version = '0.11.4'
+	$service_path = '/etc/systemd/system/'
 	case $facts['architecture'] {
 		'i386': { $processor = '386' }
 		'amd64': { $processor = 'amd64' }
 		'arm': { $processor = 'arm' }
-		default: { fail("Unsupported kernel ${facts['architecture']}") }
+		default: { fail("Unsupported architecture: ${facts['architecture']}") }
 	}
 	case $facts['kernel'] {
 		'Linux': { 
 			$kernel = 'linux' 
 			$provider = 'systemd'
+			$destination_dir = '/opt/vault/'
 		}
 		'Windows': { 
+			$destination_dir = 'c:/vault/'
 			$kernel = 'windows' 
 			$provider = 'windows'
 		}
-		'darwin': { $os = 'darwin' }
-		'freebsd': { $os = 'freebsd' }
-		'netbsd': { $os = 'netbsd' }
-		'openbsd': { $os = 'openbsd' }
-		'solaris': { $os = 'solaris' }
-		default: { fail("Unsupported ${facts['kernel']}") }
+		default: { fail("Unsupported kernel: ${facts['kernel']}") }
 	}
 	
 	$vault_config = {
@@ -43,7 +38,7 @@ class vault::params {
 		},
 		'storage'		=> {
 			'file' => {
-				'path' => '/opt/vault/data'
+				'path' => "${destination_dir}data"
 			}
 		},
 #		'api_addr'		=> 'http://10.212.137.152:8200'

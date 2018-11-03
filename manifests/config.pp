@@ -6,18 +6,16 @@
 #include vault::config
 class vault::config {
 
-	file { '/opt/vault/data':
+	file { "${::vault::destination_dir}data":
 		ensure => 'directory',
 	}
 
-	file { '/opt/vault/vault.json':
+	file { "${::vault::destination_dir}vault.json":
 		ensure	=> file,
 		content	=> to_json($::vault::vault_config),
-		owner	=> 'root',
-		group	=> 'root',
 	}	
-	include systemd::systemctl::daemon_reload
-	file { '/etc/systemd/system/vault.service':
+	
+	file { "${::vault::service_path}vault.service":
 	  ensure 	=> present,
 	  owner  	=> 'root',
 	  group  	=> 'root',

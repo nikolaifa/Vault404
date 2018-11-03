@@ -11,6 +11,6 @@ class vault::service {
 		ensure		=> running,
 		enable		=> true,
 		provider	=> systemd,
-		subscribe	=> File['/etc/systemd/system/vault.service'],
+		subscribe	=> File["${::vault::service_path}vault.service"],
 	}
 }
