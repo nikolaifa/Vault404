@@ -1,12 +1,12 @@
 {
-  "name": "vault",
-  "version": "0.1",
-  "author": "",
+  "name": "vault-secret",
+  "version": "0.0.1",
+  "author": "svartacus and nikolaifa",
   "summary": "Vault secret keeping",
-  "license": "",
-  "source": "",
-  "project_page": "",
-  "issues_url": "",
+  "license": "AFL-3.0",
+  "source": "https://github.com/nikolaifa/Vault404",
+  "project_page": "https://github.com/nikolaifa/Vault404",
+  "issues_url": "https://github.com/nikolaifa/Vault404/issues",
   "tags": [
     "vault",
     "hashicorp",
@@ -15,7 +15,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 3.0.0 < 5.0.0"
+      "version_requirement": ">= 3.0.0 < 6.0.0"
     }
   ],
   "dependencies": [
@@ -36,7 +36,7 @@
     {
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
-        "14.04"
+        "18.04"
       ]
     },
     {
@@ -61,21 +61,12 @@
       ]
     },
     {
-      "operatingsystem": "Amazon",
-      "operatingsystemrelease": [
-        "2016.03"
-      ]
-    },
-    {
       "operatingsystem": "Fedora",
       "operatingsystemrelease": [
         "25",
         "26",
         "27"
       ]
-    },
-    {
-      "operatingsystem": "Archlinux"
     }
   ]
 }

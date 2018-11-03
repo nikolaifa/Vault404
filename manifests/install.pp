@@ -13,17 +13,17 @@ class vault::install {
 	$processor = 'amd64'
 	$download_url = "${base_url}/${version}/vault_${version}_${os_tmp}_${processor}.zip"
 	$install_dir = 'opt'
-	
+
 	archive { "/tmp/vault.zip":
 		ensure 		=> present,
 		extract 	=> true,
-		extract_path	=> "/${install_dir}/",
-		source 		=> $download_url,
+		extract_path	=> "/${::vault::install_dir}/",
+		source 		=> $::vault::download_url,
 #		checksum_type	=> sha256
 #		checksum_url	=>
 #		sjekke file integritet
 #		sjekke signatur?
-		creates		=> "${install_dir}/vault",
+		creates		=> "${::vault::install_dir}/vault",
 		cleanup		=> true,
 	}
 }
