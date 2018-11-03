@@ -10,8 +10,8 @@
 	$kernel						= $::vault::params::kernel,
 	$processor					= $::vault::params::processor,
 	$destination_dir				= $::vault::params::destination_dir,
-	$service_path					= $::vault::params::service_path
-
+	$service_path					= $::vault::params::service_path,
+	$provider 							= $::vault::params::provider
  ) inherits ::vault::params { 
   include stdlib
 #	include ::openssl

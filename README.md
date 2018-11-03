@@ -1,10 +1,6 @@
 
 # vault
 
-Welcome to your new module. A short overview of the generated parts can be found in the PDK documentation at https://puppet.com/pdk/latest/pdk_generating_modules.html .
-
-The README template below provides a starting point with details about what information to include in your README.
-
 #### Table of Contents
 
 1. [Description](#description)
@@ -18,71 +14,49 @@ The README template below provides a starting point with details about what info
 
 ## Description
 
-Briefly tell users why they might want to use your module. Explain what your module does and what kind of problems users can solve with it.
-
-This should be a fairly short description helps the user decide if your module is what they want.
+Vault404 installs and starts runs [Vault](https://www.vaultproject.io/) secret engine server.
 
 ## Setup
 
 ### What vault affects **OPTIONAL**
 
-If it's obvious what your module touches, you can skip this section. For example, folks can probably figure out that your mysql_instance module affects their MySQL instances.
+* Files, folders and services all created by vault
+* Service/configuration for vault
+* User and group for running vault 
 
-If there's more that they should know about, though, this is the place to mention:
+### Setup Requirements
 
-* Files, packages, services, or operations that the module will alter, impact, or execute.
-* Dependencies that your module automatically installs.
-* Warnings or other important notices.
-
-### Setup Requirements **OPTIONAL**
-
-If your module requires anything extra before setting up (pluginsync enabled, another module, etc.), mention it here.
-
-If your most recent release breaks compatibility or requires particular steps for upgrading, you might want to include an additional "Upgrading" section here.
+puppetlabs-stdlib
+puppet-archive
+camptocamp-systemd
+camptocamp-openssl
 
 ### Beginning with vault
 
-The very basic steps needed for a user to get the module up and running. This can include setup steps, if necessary, or it can be an example of the most basic use of the module.
-
-## Usage
-
-Include usage examples for common use cases in the **Usage** section. Show your users how to use your module to solve problems, and be sure to include code examples. Include three to five examples of the most important or common tasks a user can accomplish with your module. Show users how to accomplish more complex tasks that involve different types, classes, and functions working in tandem.
-
-## Reference
-
-This section is deprecated. Instead, add reference information to your code as Puppet Strings comments, and then use Strings to generate a REFERENCE.md in your module. For details on how to add code comments and generate documentation with Strings, see the Puppet Strings [documentation](https://puppet.com/docs/puppet/latest/puppet_strings.html) and [style guide](https://puppet.com/docs/puppet/latest/puppet_strings_style.html)
-
-If you aren't ready to use Strings yet, manually create a REFERENCE.md in the root of your module directory and list out each of your module's classes, defined types, facts, functions, Puppet tasks, task plans, and resource types and providers, along with the parameters for each.
-
-For each element (class, defined type, function, and so on), list:
-
-  * The data type, if applicable.
-  * A description of what the element does.
-  * Valid values, if the data type doesn't make it obvious.
-  * Default value, if any.
-
-For example:
-
-```
-### `pet::cat`
-
-#### Parameters
-
-##### `meow`
-
-Enables vocalization in your cat. Valid options: 'string'.
-
-Default: 'medium-loud'.
-```
-
+Declare the vault class:
+```puppet
+  include 'vault'
+``` 
 ## Limitations
 
-In the Limitations section, list any incompatibilities, known issues, or other warnings.
+Outside of vault limitations, its' probably limited to OS's with linux kernel and using systemd as a service manager. Tested with Ubuntu 18.04 and puppet 5.4.0
 
 ## Development
+We are happy to recieve commits as long as they follow the rules and guidelines below. If you want to fork the module somewhere else this is also fine as long as you mention or link the original module along with the documentation and code.
 
-In the Development section, tell other users the ground rules for contributing to your project and how they should submit their work.
+Rules:
 
-## Release Notes/Contributors/Etc. **Optional**
+* All code must follow the [Puppet Style Guide](https://docs.puppet.com/guides/style_guide.html).
+* Added code must pass the included tests. If you add new fuctions, please create puppet tests for these.
+* Make sure not to break any existing code or functions of this module.
+* New functions must be documented in the Github repository.
+* All commits must follow the [Github Commit Guide](https://github.com/erlang/otp/wiki/writing-good-commit-messages).
 
-If you aren't using changelog, put your release notes here (though you should consider using changelog). You can also add any additional sections you feel are necessary or important to include here. Please use the `## ` header.
+Guide:
+
+1. Fork the repo.
+2. Run the tests to verify that the module works as intended.
+3. Add new code, bugfixes and documentation if needed.
+4. Make sure that all the tests pass.
+5. Push to your fork and submit a pull request.
+6. Create an issue on Github if you have any problems.
