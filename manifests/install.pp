@@ -20,13 +20,13 @@ class vault::install {
 		extract 	=> true,
 		extract_path	=> $::vault::destination_dir,
 		source 		=> $::vault::download_url,
-		creates		=> "${::vault::destination_dir}$vault_bin",
+		creates		=> "${::vault::destination_dir}vault",
 		cleanup		=> true,
 		before		=> File['vault_binary'],
 	}
 
 	file { 'vault_binary':
-		path => "${::vault::destination_dir}$vault_bin",
+		path => "${::vault::destination_dir}vault",
 		owner => 'vault',
 		group => 'vault',
 		mode => '0755',
