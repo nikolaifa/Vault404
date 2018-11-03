@@ -12,7 +12,7 @@ class vault::install {
 		ensure => 'directory',
 		owner  	=> 'vault',
 		group  	=> 'vault',
-		mode   	=> '0644',
+		mode   	=> '0640',
 	}
 
 	archive { $::vault::destination_dir:
@@ -31,11 +31,16 @@ class vault::install {
 		group => 'vault',
 		mode => '0755',
 	}
+	
+	group { 'vault':
+		ensure => present,
+	}
+
 	user { 'vault':
 		ensure => 'present',
 		comment => 'For running vault',
 		system => true,
-		home => '/etc/vauld.d',
+		home => '/etc/vault.d',
 		shell => '/bin/false',
 	}
 }

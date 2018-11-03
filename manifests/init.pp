@@ -13,7 +13,8 @@
 	$service_path					= $::vault::params::service_path
 
  ) inherits ::vault::params { 
-  	include stdlib
+  include stdlib
+#	include ::openssl
 	include systemd::systemctl::daemon_reload
 
 	$download_url = "${base_url}/${version}/vault_${version}_${kernel}_${processor}.zip"

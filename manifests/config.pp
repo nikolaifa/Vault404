@@ -10,7 +10,7 @@ class vault::config {
 		ensure => 'directory',
 			  owner  	=> 'vault',
 			  group  	=> 'vault',
-			  mode   	=> '0644',
+			  mode   	=> '0640',
 	}
 
 	file { "${::vault::destination_dir}vault.json":
@@ -19,7 +19,7 @@ class vault::config {
 		
 			  owner  	=> 'vault',
 			  group  	=> 'vault',
-			  mode   	=> '0644',
+			  mode   	=> '0640',
 	}	
 	
 
@@ -29,7 +29,7 @@ class vault::config {
 			  ensure 	=> present,
 			  owner  	=> 'vault',
 			  group  	=> 'vault',
-			  mode   	=> '0644',
+			  mode   	=> '0640',
 			  content	=> template('vault/vault.systemd.erb'),
 			}
 			~> Class['systemd::systemctl::daemon_reload']
