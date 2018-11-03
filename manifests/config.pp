@@ -26,8 +26,4 @@ class vault::config {
 	}
 	~> Class['systemd::systemctl::daemon_reload']
 
-	#service {'vault':
-	#  ensure    => 'running',
-	#  subscribe => File['/etc/systemd/system/vault.service'],
-	#}
 }
