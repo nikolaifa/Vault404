@@ -42,7 +42,6 @@ class vault::params {
 				'path' => "${destination_dir}data"
 			}
 		},
-#		'api_addr'		=> 'http://10.212.137.152:8200'
 		'max_lease_ttl'		=> '10h',
 		'default_lease_ttl'	=> '10h',
 		'ui'			=> 'true',
