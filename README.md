@@ -17,7 +17,7 @@ Vault404 installs and starts runs [Vault](https://www.vaultproject.io/) secret e
 
 ## Setup
 
-### What vault affects **OPTIONAL**
+### What vault affects
 
 * Files, folders and services all created by vault
 * Service/configuration for vault
