@@ -9,6 +9,7 @@ class vault::params {
 	$base_url = 'https://releases.hashicorp.com/vault'
 	$version = '0.11.4'
 	$service_path = '/etc/systemd/system/'
+
 	case $facts['architecture'] {
 		'i386': { $processor = '386' }
 		'amd64': { $processor = 'amd64' }
@@ -22,9 +23,9 @@ class vault::params {
 			$destination_dir = '/opt/vault/'
 		}
 		'Windows': { 
-			$destination_dir = 'c:/vault/'
 			$kernel = 'windows' 
 			$provider = 'windows'
+			$destination_dir = 'c:/vault/'
 		}
 		default: { fail("Unsupported kernel: ${facts['kernel']}") }
 	}

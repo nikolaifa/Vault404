@@ -6,11 +6,23 @@
 #include vault::service
 
 class vault::service {
-	service { 'vault': 
-		name		=> vault,
-		ensure		=> running,
-		enable		=> true,
-		provider	=> systemd,
-		subscribe	=> File["${::vault::service_path}vault.service"],
+	case $::vault::kernel {
+		'linux': {
+			service { 'vault': 
+				name		=> vault,
+				ensure		=> running,
+				enable		=> true,
+				provider	=> $::vault::provider,
+				subscribe	=> File["${::vault::service_path}vault.service"],
+			}	
+		}
+		'windows': {
+			service { 'vault':
+				name	=> vault,
+				ensure	=> running,
+				enable	=> true,
+			}
+		}
+		default: { fail("Failed to start vault") }
 	}
 }

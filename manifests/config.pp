@@ -15,13 +15,22 @@ class vault::config {
 		content	=> to_json($::vault::vault_config),
 	}	
 	
-	file { "${::vault::service_path}vault.service":
-	  ensure 	=> present,
-	  owner  	=> 'root',
-	  group  	=> 'root',
-	  mode   	=> '0644',
-	  content	=> template('vault/vault.systemd.erb'),
+	case $::vault::kernel {
+		'linux': {	
+			file { "${::vault::service_path}vault.service":
+			  ensure 	=> present,
+			  owner  	=> 'root',
+			  group  	=> 'root',
+			  mode   	=> '0644',
+			  content	=> template('vault/vault.systemd.erb'),
+			}
+			~> Class['systemd::systemctl::daemon_reload']
+		}
+		'windows': {
+		
+		}
+		default: {
+			fail("Unsupported kernel: $::vault::kernel")
+		}
 	}
-	~> Class['systemd::systemctl::daemon_reload']
-
 }
