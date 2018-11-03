@@ -19,6 +19,7 @@ class vault::service {
 		'windows': {
 			service { 'vault':
 				name	=> vault,
+				start => "${::vault::destination_dir}vault server -config=${::vault::destination_dir}vault.json",
 				ensure	=> running,
 				enable	=> true,
 			}

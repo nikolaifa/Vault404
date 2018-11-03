@@ -17,11 +17,7 @@ class vault::install {
 		extract 	=> true,
 		extract_path	=> $::vault::destination_dir,
 		source 		=> $::vault::download_url,
-#		checksum_type	=> sha256
-#		checksum_url	=>
-#		sjekke file integritet
-#		sjekke signatur?
-		creates		=> "${::vault::destination_dir}/vault",
+		creates		=> "${::vault::destination_dir}vault",
 		cleanup		=> true,
 	}
 }

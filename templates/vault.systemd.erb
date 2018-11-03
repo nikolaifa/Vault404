@@ -2,12 +2,12 @@
 Description=Vault for managing secrets
 Requires=network-online.target 
 After=network-online.target
-ConditionFileNotEmpty=/opt/vault/vault.json
+ConditionFileNotEmpty=<%= scope['vault::destination_dir'] %>vault.json
 
 [Service]
 User=root
 Group=root
-ExecStart=/opt/vault/vault server -config=/opt/vault/vault.json
+ExecStart=<%= scope['vault::destination_dir'] %>vault server -config=<%= scope['vault::destination_dir'] %>vault.json
 EnvironmentFile=-/etc/sysconfig/vault
 Environment=GOMAXPROCS=2
 LimitMEMLOCK=infinity
