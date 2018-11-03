@@ -8,19 +8,27 @@ class vault::config {
 
 	file { "${::vault::destination_dir}data":
 		ensure => 'directory',
+			  owner  	=> 'vault',
+			  group  	=> 'vault',
+			  mode   	=> '0644',
 	}
 
 	file { "${::vault::destination_dir}vault.json":
 		ensure	=> file,
 		content	=> to_json($::vault::vault_config),
+		
+			  owner  	=> 'vault',
+			  group  	=> 'vault',
+			  mode   	=> '0644',
 	}	
 	
+
 	case $::vault::kernel {
 		'linux': {	
 			file { "${::vault::service_path}vault.service":
 			  ensure 	=> present,
-			  owner  	=> 'root',
-			  group  	=> 'root',
+			  owner  	=> 'vault',
+			  group  	=> 'vault',
 			  mode   	=> '0644',
 			  content	=> template('vault/vault.systemd.erb'),
 			}

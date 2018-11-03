@@ -5,10 +5,9 @@ After=network-online.target
 ConditionFileNotEmpty=<%= scope['vault::destination_dir'] %>vault.json
 
 [Service]
-User=root
-Group=root
+User=vault
+Group=vault
 ExecStart=<%= scope['vault::destination_dir'] %>vault server -config=<%= scope['vault::destination_dir'] %>vault.json
-EnvironmentFile=-/etc/sysconfig/vault
 Environment=GOMAXPROCS=2
 LimitMEMLOCK=infinity
 KillMode=process

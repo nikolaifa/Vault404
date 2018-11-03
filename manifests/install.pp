@@ -10,6 +10,9 @@ class vault::install {
 
 	file { $::vault::destination_dir:
 		ensure => 'directory',
+		owner  	=> 'vault',
+		group  	=> 'vault',
+		mode   	=> '0644',
 	}
 
 	archive { $::vault::destination_dir:
@@ -17,8 +20,23 @@ class vault::install {
 		extract 	=> true,
 		extract_path	=> $::vault::destination_dir,
 		source 		=> $::vault::download_url,
-		creates		=> "${::vault::destination_dir}vault",
+		creates		=> "${::vault::destination_dir}$vault_bin",
 		cleanup		=> true,
+		before		=> File['vault_binary'],
+	}
+
+	file { 'vault_binary':
+		path => "${::vault::destination_dir}$vault_bin",
+		owner => 'vault',
+		group => 'vault',
+		mode => '0755',
+	}
+	user { 'vault':
+		ensure => 'present',
+		comment => 'For running vault',
+		system => true,
+		home => '/etc/vauld.d',
+		shell => '/bin/false',
 	}
 }
 
