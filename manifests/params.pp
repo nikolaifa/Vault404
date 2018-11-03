@@ -8,12 +8,9 @@ class vault::params {
 
 	$base_url		='https://releases.hashicorp.com/vault'
 	$version		='0.11.4'
-	#$download_url		='${base_url}/${version}/vault_${version}_${os_tmp}_${processor}.zip'
-#	$server_url		='http://127.0.0.1:8200'
 	$destination_dir	='/opt/vault/'
 	$binary_dir		='/opt/bin'
-#	$config_dir		='/etc/puppetlabs/code/environments/production/modules/vault'
-#
+
 	case $facts['architecture'] {
 		'i386': { $processor = '386' }
 		'amd64': { $processor = 'amd64' }
