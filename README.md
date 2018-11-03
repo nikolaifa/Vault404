@@ -8,7 +8,6 @@
     * [What vault affects](#what-vault-affects)
     * [Setup requirements](#setup-requirements)
     * [Beginning with vault](#beginning-with-vault)
-3. [Usage - Configuration options and additional functionality](#usage)
 4. [Limitations - OS compatibility, etc.](#limitations)
 5. [Development - Guide for contributing to the module](#development)
 
