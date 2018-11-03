@@ -19,10 +19,9 @@
 
 	contain ::vault::install
 	contain ::vault::config
-	contain ::vault::service
 	#contain ::vault::service
 	Class['vault::install'] -> Class['vault::config']
-	Class['vault::config'] -> Class['vault::service']
+	#Class['vault::config'] -> Class['vault::service']
 
  
    }

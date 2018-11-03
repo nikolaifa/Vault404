@@ -3,7 +3,7 @@
 # @summary A short summary of the purpose of this class
 #
 # @example
-include vault::config
+#include vault::config
 class vault::config {
 #	$backend 	= { 'file' => { 'path' => '/opt/vault' }}
 #	$listener = { 'tcp' => { 'address' => '127.0.0.1:500',
@@ -28,7 +28,7 @@ class vault::config {
 		'default_lease_ttl'	=> '10h',
 		'ui'			=> 'true',
 	}
-	require stdlib
+	include stdlib
 	file { '/opt/vaultConf.json':
 		ensure	=> file,
 		content	=> to_json($vault_config),
