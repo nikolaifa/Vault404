@@ -6,7 +6,11 @@
 #include vault::config
 class vault::config {
 
-	file { '/opt/vaultConf.json':
+	file { '/opt/vault/data':
+		ensure => 'directory',
+	}
+
+	file { '/opt/vault/vault.json':
 		ensure	=> file,
 		content	=> to_json($::vault::vault_config),
 		owner	=> 'root',
@@ -22,8 +26,8 @@ class vault::config {
 	}
 	~> Class['systemd::systemctl::daemon_reload']
 
-	service {'vault':
-	  ensure    => 'running',
-	  subscribe => File['/etc/systemd/system/vault.service'],
-	}
+	#service {'vault':
+	#  ensure    => 'running',
+	#  subscribe => File['/etc/systemd/system/vault.service'],
+	#}
 }

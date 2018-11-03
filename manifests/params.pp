@@ -10,15 +10,15 @@ class vault::params {
 	$version		='0.11.4'
 	#$download_url		='${base_url}/${version}/vault_${version}_${os_tmp}_${processor}.zip'
 #	$server_url		='http://127.0.0.1:8200'
-	$destination_dir	='/opt'
+	$destination_dir	='/opt/vault/'
 	$binary_dir		='/opt/bin'
 #	$config_dir		='/etc/puppetlabs/code/environments/production/modules/vault'
 #
 	case $facts['architecture'] {
 		'i386': { $processor = '386' }
-		/'amd64|x85_64'/: { $processor = 'amd64' }
+		'amd64': { $processor = 'amd64' }
 		'arm': { $processor = 'arm' }
-#		default: { fail("Unsupported kernel ${facts['architecture']}") }
+		default: { fail("Unsupported kernel ${facts['architecture']}") }
 	}
 	case $facts['kernel'] {
 		'Linux': { 
@@ -34,7 +34,7 @@ class vault::params {
 		'netbsd': { $os = 'netbsd' }
 		'openbsd': { $os = 'openbsd' }
 		'solaris': { $os = 'solaris' }
-#		default: { fail("Unsupported ${facts['kernel']}") }
+		default: { fail("Unsupported ${facts['kernel']}") }
 	}
 	
 	$vault_config = {
@@ -46,7 +46,7 @@ class vault::params {
 		},
 		'storage'		=> {
 			'file' => {
-				'path' => '/opt/vaultData'
+				'path' => '/opt/vault/data'
 			}
 		},
 #		'api_addr'		=> 'http://10.212.137.152:8200'

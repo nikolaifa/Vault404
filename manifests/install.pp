@@ -7,23 +7,21 @@
 include '::archive'
 
 class vault::install {
-	$base_url = 'https://releases.hashicorp.com/vault'
-	$version = '0.11.4'
-	$os_tmp = 'linux'
-	$processor = 'amd64'
-	$download_url = "${base_url}/${version}/vault_${version}_${os_tmp}_${processor}.zip"
-	$install_dir = 'opt'
+
+	file { '/opt/vault':
+		ensure => 'directory',
+	}
 
 	archive { "/tmp/vault.zip":
 		ensure 		=> present,
 		extract 	=> true,
-		extract_path	=> "/${::vault::install_dir}/",
+		extract_path	=> $::vault::destination_dir,
 		source 		=> $::vault::download_url,
 #		checksum_type	=> sha256
 #		checksum_url	=>
 #		sjekke file integritet
 #		sjekke signatur?
-		creates		=> "${::vault::install_dir}/vault",
+		creates		=> "${::vault::destination_dir}/vault",
 		cleanup		=> true,
 	}
 }

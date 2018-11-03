@@ -2,17 +2,15 @@
 Description=Vault for managing secrets
 Requires=network-online.target 
 After=network-online.target
-ConditionFileNotEmpty=/opt/vault.json
+ConditionFileNotEmpty=/opt/vault/vault.json
 
 [Service]
 User=root
 Group=root
-ExecStart=/opt/vault server -config=/opt/vault.json
+ExecStart=/opt/vault/vault server -config=/opt/vault/vault.json
 EnvironmentFile=-/etc/sysconfig/vault
 Environment=GOMAXPROCS=2
 LimitMEMLOCK=infinity
-StandardOutput=/logs/vault/output.log
-StandardError=/logs/vault/error.log
 KillMode=process
 Restart=on-failure
 RestartSec=42s
