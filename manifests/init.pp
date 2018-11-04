@@ -11,13 +11,14 @@
 	$processor					= $::vault::params::processor,
 	$destination_dir				= $::vault::params::destination_dir,
 	$service_path					= $::vault::params::service_path,
-	$provider 							= $::vault::params::provider
+	$provider 					= $::vault::params::provider,
+	$download_url					= $::vault::params::download_url
  ) inherits ::vault::params { 
   include stdlib
 #	include ::openssl
 	include systemd::systemctl::daemon_reload
-
-	$download_url = "${base_url}/${version}/vault_${version}_${kernel}_${processor}.zip"
+	include stdlib
+	include archive
 	
 	contain ::vault::install
 	contain ::vault::config

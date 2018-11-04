@@ -9,12 +9,14 @@ class vault::params {
 	$base_url = 'https://releases.hashicorp.com/vault'
 	$version = '0.11.4'
 	$service_path = '/etc/systemd/system/'
-
 	case $facts['architecture'] {
 		'i386': { $processor = '386' }
-		'amd64': { $processor = 'amd64' }
+		/(amd64|x86_64)/: { $processor = 'amd64' }
 		'arm': { $processor = 'arm' }
-		default: { fail("Unsupported architecture: ${facts['architecture']}") }
+		default: { 
+			$processor = undef
+			fail("Unsupported architecture: ${facts['architecture']}") 
+		}
 	}
 	case $facts['kernel'] {
 		'Linux': { 
@@ -27,7 +29,12 @@ class vault::params {
 			$provider = 'windows'
 			$destination_dir = 'c:/vault/'
 		}
-		default: { fail("Unsupported kernel: ${facts['kernel']}") }
+		default: {
+			$kernel = undef
+			$provider = undef
+			$destination_dir = undef 
+			fail("Unsupported kernel: ${facts['kernel']}") 
+		}
 	}
 	
 	$vault_config = {
@@ -46,4 +53,5 @@ class vault::params {
 		'default_lease_ttl'	=> '10h',
 		'ui'			=> 'true',
 	}
+	$download_url = "${base_url}/${version}/vault_${version}_${kernel}_${processor}.zip"
  }

@@ -4,10 +4,8 @@
 #
 # @example
 #include vault::install
-include '::archive'
 
 class vault::install {
-
 	file { $::vault::destination_dir:
 		ensure => 'directory',
 		owner  	=> 'vault',
@@ -15,7 +13,7 @@ class vault::install {
 		mode   	=> '0640',
 	}
 
-	archive { $::vault::destination_dir:
+	archive { "${::vault::destination_dir}vault.zip":
 		ensure 		=> present,
 		extract 	=> true,
 		extract_path	=> $::vault::destination_dir,
