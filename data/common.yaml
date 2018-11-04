@@ -1,11 +1,9 @@
 ---
 vault::$base_url: 'https://releases.hashicorp.com/vault'
 vault::$version: '0.11.4'
-vault::$os_tmp: 'linux'
+vault::$kernel: 'linux'
 vault::$processor: 'amd64'
-vault::$download_url: "${base_url}/${version}/vault_${version}_${os_tmp}_${processor}.zip"
-vault::$install_dir: 'opt'
-#vault::$server_url: 'http://127.0.0.1:8200'
-vault::$destination_dir: '/opt'
-vault::$binary_dir: '/opt/bin'
-#vault::$config_dir: '/etc/puppetlabs/code/environments/production/modules/vault'
+vault::$destination_dir: '/opt/vault/'
+vault::$service_path: '/etc/systemd/system/'
+vault::$provider: 'systemd'
+vault::$download_url: "${base_url}/${version}/vault_${version}_${kernel}_${processor}.zip"
