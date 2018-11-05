@@ -7,7 +7,7 @@
 class vault::config {
 
   file { "${::vault::destination_dir}data":
-    ensure => 'directory',
+    ensure  => 'directory',
       owner => 'vault',
       group => 'vault',
       mode  => '0640',
