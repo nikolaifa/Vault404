@@ -8,9 +8,9 @@ class vault::config {
 
   file { "${::vault::destination_dir}data":
     ensure => 'directory',
-      owner=> 'vault',
-      group=> 'vault',
-      mode => '0640',
+      owner => 'vault',
+      group => 'vault',
+      mode  => '0640',
   }
 
   file { "${::vault::destination_dir}vault.json":
