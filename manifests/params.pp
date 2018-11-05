@@ -58,4 +58,4 @@ class vault::params {
     'ui'      => true,
   }
   $download_url = "${base_url}/${version}/vault_${version}_${kernel}_${processor}.zip"
- }
+  }

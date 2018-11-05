@@ -26,7 +26,7 @@ def changelog_future_release
   puts "GitHubChangelogGenerator future_release:#{returnVal}"
   returnVal
 end
-
+PuppetLint.configuration.send('disable_2sp_soft_tabs')
 PuppetLint.configuration.send('disable_relative')
 
 if Bundler.rubygems.find_name('github_changelog_generator').any?
